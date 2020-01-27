@@ -1,0 +1,22 @@
+~~~~~~~~~~~~~~~~~~~~~~~AD-MELA INSTALLATION GUIDE~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Welcome to Ad-Mela.
+
+Ad-Mela is a website that provides a platform for connecting advertisers 
+and website owners. Website owners can list available ad-spaces on their
+website onto our website and advertisers can then view them and contact
+them directly; thus, providing an efficient way of ad distribution.
+
+Steps for installation:
+
+1.	Install xampp on your device.
+2.	Locate htdocs in C:/xampp.
+3.	Create folder named 'admela'.
+4.	Copy the contents of the current folder inside the admela folder.
+5.	Open xampp control panel, start apache and MYSQL.
+6.	Open any browser.
+7.	Navigate to locahost/admela
+8.	The admela website shall now be served.
+9. 	Enjoy advertising.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
