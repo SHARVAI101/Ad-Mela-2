@@ -181,6 +181,7 @@ include 'dbh.php';
 				}
 				?>
 				<a class="nav-item nav-link" href="rss.php"><i class="fas fa-rss"></i> RSS</a>
+				<a class="nav-item nav-link" href="mashup.php"><i class="fas fa-random"></i> Mashup</a>
 			</div>
 			<div class="header-right">
 				<?php

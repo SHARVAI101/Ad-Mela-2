@@ -1,5 +1,5 @@
 <?php
-
+/*
     include 'dbh.php';
 
     // header("Content-Type: application/rss+xml; charset=ISO-8859-1");
@@ -10,7 +10,7 @@
     $rssfeed .= '<channel>';
     $rssfeed .= '<title>My RSS feed</title>';
     $rssfeed .= '<link>http://www.mywebsite.com</link>';
-    $rssfeed .= '<description>This is an example RSS feed</description>';
+    $rssfeed .= '<description>This is an RSS feed</description>';
     $rssfeed .= '<language>en-us</language>';
     $rssfeed .= '<copyright>Copyright (C) 2020 Ad-Mela</copyright>';
   
@@ -45,6 +45,7 @@
          
         $rssfeed .= '<item>';
         $rssfeed .= '<title>' . $websiteName . '</title>';
+        $rssfeed .= '<description>This is an advertisement</description>';
         $rssfeed .= '<websiteType>' . $websiteType . '</websiteType>';
         $rssfeed .= '<adtype>' . $adtype . '</adtype>';
         $rssfeed .= '<width>' . $width . '</width>';
@@ -59,4 +60,48 @@
     $rssfeed .= '</rss>';
  
     echo $rssfeed;
+*/
+
+$page = $_SERVER['PHP_SELF'];
+$sec = "10";
 ?>
+
+<html>
+    <head>
+        <title>RSS Feed Reader</title>
+        <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
+    </head>
+    <body>
+        <?php
+        //Feed URLs
+        $feeds = array(
+            "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+        );
+        
+        //Read each feed's items
+        $entries = array();
+        foreach($feeds as $feed) {
+            $xml = simplexml_load_file($feed);
+            $entries = array_merge($entries, $xml->xpath("//item"));
+        }
+        
+        //Sort feed entries by pubDate
+        usort($entries, function ($feed1, $feed2) {
+            return strtotime($feed2->pubDate) - strtotime($feed1->pubDate);
+        });
+        
+        ?>
+        
+        <ul><?php
+        //Print all the entries
+        foreach($entries as $entry){
+            ?>
+            <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a> (<?= parse_url($entry->link)['host'] ?>)
+            <p><?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?></p>
+            <p><?= $entry->description ?></p></li>
+            <?php
+        }
+        ?>
+        </ul>
+    </body>
+</html>
